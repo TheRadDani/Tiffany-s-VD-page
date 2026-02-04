@@ -10,14 +10,20 @@ permissions:
   pages: write
   id-token: write
 
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
+      # 1️⃣ Checkout public site repo
       - name: Checkout public site
         uses: actions/checkout@v4
 
+      # 2️⃣ Checkout private assets repo
       - name: Checkout private assets
         uses: actions/checkout@v4
         with:
@@ -25,15 +31,23 @@ jobs:
           token: ${{ secrets.PRIVATE_REPO_TOKEN }}
           path: private-assets
 
-      - name: Copy images into public site
+      # 3️⃣ Copy images into build output
+      - name: Copy private images into site
         run: |
           mkdir -p images
           cp -R private-assets/images/* images/
 
+      # 4️⃣ Upload artifact for GitHub Pages (THIS is what gets deployed)
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: .
 
+      # 5️⃣ Clean up images after artifact is created
+      - name: Remove images from workspace
+        run: |
+          rm -rf images private-assets
+
+      # 6️⃣ Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
