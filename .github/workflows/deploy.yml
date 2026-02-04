@@ -22,7 +22,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: TheRadDani/private-assets
-          token: ${{ secrets.PRIVATE_ASSETS_TOKEN }}
+          token: ${{ secrets.PRIVATE_REPO_TOKEN }}
           path: private-assets
 
       - name: Copy images into public site
