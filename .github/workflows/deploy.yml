@@ -1,4 +1,4 @@
-name: Deploy Static Website to GitHub Pages
+name: Deploy Site with Private Assets
 
 on:
   push:
@@ -15,13 +15,30 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      # 1. Checkout PUBLIC repo
+      - name: Checkout public site
         uses: actions/checkout@v4
 
-      - name: Upload site files
+      # 2. Checkout PRIVATE assets repo
+      - name: Checkout private assets
+        uses: actions/checkout@v4
+        with:
+          repository: TheRadDani/private-assets
+          token: ${{ secrets.PRIVATE_ASSETS_TOKEN }}
+          path: private-assets
+
+      # 3. Copy images into site
+      - name: Copy images into public site
+        run: |
+          mkdir -p images
+          cp -R private-assets/images/* images/
+
+      # 4. Upload site to GitHub Pages
+      - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: .
 
+      # 5. Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
