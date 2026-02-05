@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="robots" content="noindex, noimageindex">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy Valentine's Day, Tiffany! ❤️</title>
@@ -252,12 +251,12 @@
                 <p>Welcome to a special Valentine's Day celebration...</p>
                 <div class="video-container">
                     <iframe 
-                            src="https://www.youtube.com/embed/EQ9yK4yHamo" 
-                            title="YouTube video player" 
-                            frameborder="0" 
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                            allowfullscreen> 
-                    </iframe> 
+                        src="https://www.youtube.com/embed/JGwWNGJdvx8?autoplay=1&mute=0" 
+                        title="YouTube video player" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
                 </div>
                 <p style="font-size: 1.4em; color: #ff6b9d; margin-top: 20px;">
                     This is a love story about someone truly special...
@@ -268,7 +267,9 @@
             <div class="page hidden" id="page2">
                 <h2>Meet Tiffany ✨</h2>
                 <div class="image-container">
-                    <img src="./images/tiffany1.jpg" alt="Tiffany's adorable smile" class="tiffany-photo">
+                    <div class="image-placeholder">
+                        📸 Tiffany's adorable smile
+                    </div>
                 </div>
                 <p>
                     Where do I even begin? Tiffany, you are the most incredibly cute person I've ever known. 
@@ -281,7 +282,9 @@
             <div class="page hidden" id="page3">
                 <h2>Your Beautiful Soul 💖</h2>
                 <div class="image-container">
-                    <img src="./images/tiffany5.jpg" alt="Tiffany's adorable smile" class="tiffany-photo">
+                    <div class="image-placeholder">
+                        📸 Tiffany being herself
+                    </div>
                 </div>
                 <p>
                     It's not just your outer beauty that captivates me, Tiffany. It's your kindness, 
@@ -294,7 +297,9 @@
             <div class="page hidden" id="page4">
                 <h2>Every Moment With You ⏰</h2>
                 <div class="image-container">
-                    <img src="./images/tiffany12.jpg" alt="Tiffany's adorable smile" class="tiffany-photo">
+                    <div class="image-placeholder">
+                        📸 Our special moments
+                    </div>
                 </div>
                 <p>
                     Every moment I spend with you is precious. Whether we're laughing together, 
@@ -308,7 +313,9 @@
             <div class="page hidden" id="page5">
                 <h2>I Love You More Than Words 💌</h2>
                 <div class="image-container">
-                    <img src="./images/tiffany7.jpg" alt="Tiffany's adorable smile" class="tiffany-photo">
+                    <div class="image-placeholder">
+                        📸 My favorite person
+                    </div>
                 </div>
                 <p>
                     Tiffany, I love you more than words could ever express. You are my best friend, 
@@ -322,7 +329,9 @@
             <div class="page hidden" id="page6">
                 <h2>Forever and Always 💕</h2>
                 <div class="image-container">
-                    <img src="./images/tiffany10.jpg" alt="Tiffany's adorable smile" class="tiffany-photo">
+                    <div class="image-placeholder">
+                        📸 Together forever
+                    </div>
                 </div>
                 <p style="font-size: 1.3em; color: #ff6b9d;">
                     Happy Valentine's Day, my beautiful Tiffany!
@@ -352,10 +361,52 @@
 
             <!-- Page 8: Animated Heart with Brython -->
             <div class="page hidden" id="page8">
-                <h1 style="text-align: center; color: #ff1744; font-size: 2.5em; margin: 30px 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.1);">
-                        Muaaaaaah 😽
-                    </h1>
-            </div>
+                    <h2 style="margin-bottom: 20px;">My Heart Beats For You 💗</h2>
+                    <div style="background: white; border-radius: 15px; padding: 20px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); min-height: 400px; display: flex; justify-content: center; align-items: center;">
+                        
+                        <div id="turtle-plot"></div>
+
+                        <script type="text/python">
+                            import turtle
+                            from browser import document
+
+                            # Essential for the browser version:
+                            turtle.set_panel("turtle-plot")
+                            
+                            t = turtle.Turtle()
+                            t.speed(5)
+                            t.color("red")
+                            
+                            # Reposition to center
+                            t.penup()
+                            t.goto(0, -50)
+                            t.pendown()
+
+                            t.begin_fill()
+                            t.left(140)
+                            t.forward(113)
+                            
+                            # Left curve
+                            for _ in range(200):
+                                t.right(1)
+                                t.forward(1)
+                                
+                            t.left(120)
+                            
+                            # Right curve
+                            for _ in range(200):
+                                t.right(1)
+                                t.forward(1)
+                                
+                            t.forward(112)
+                            t.end_fill()
+                            t.hideturtle()
+                        </script>
+                    </div>
+                    <p style="margin-top: 20px; font-size: 1.2em; color: #ff6b9d;">
+                        This heart will keep drawing for you, over and over... just like my love! 💕
+                    </p>
+                </div>
         </div>
     </div>
 
@@ -437,6 +488,89 @@
         // Heart animation using Canvas (turtle-like drawing)
         let animationRunning = false;
         
+        function startHeartAnimation() {
+            if (animationRunning) return;
+            animationRunning = true;
+            
+            const canvas = document.getElementById('heartCanvas');
+            const ctx = canvas.getContext('2d');
+            
+            // Set canvas size
+            const scale = Math.min(canvas.width / 600, 1);
+            
+            // Heart drawing function
+            function drawHeart() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                const centerX = canvas.width / 2;
+                const centerY = canvas.height / 2.5;
+                const size = 80 * scale;
+                
+                let t = 0;
+                const points = [];
+                
+                // Calculate all heart points
+                while (t <= 2 * Math.PI) {
+                    const x = centerX + size * 16 * Math.pow(Math.sin(t), 3);
+                    const y = centerY - size * (13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t));
+                    points.push({x, y});
+                    t += 0.01;
+                }
+                
+                // Animate drawing
+                let i = 0;
+                const colors = ['#ff1744', '#ff6b9d', '#ff8fab', '#ffc1cc'];
+                let colorIndex = 0;
+                
+                function drawNextSegment() {
+                    if (i < points.length) {
+                        ctx.beginPath();
+                        if (i > 0) {
+                            ctx.moveTo(points[i-1].x, points[i-1].y);
+                        }
+                        ctx.lineTo(points[i].x, points[i].y);
+                        ctx.strokeStyle = colors[colorIndex % colors.length];
+                        ctx.lineWidth = 3;
+                        ctx.lineCap = 'round';
+                        ctx.stroke();
+                        
+                        i++;
+                        if (i % 50 === 0) colorIndex++;
+                        
+                        requestAnimationFrame(drawNextSegment);
+                    } else {
+                        // Fill the heart
+                        ctx.fillStyle = 'rgba(255, 107, 157, 0.3)';
+                        ctx.beginPath();
+                        ctx.moveTo(points[0].x, points[0].y);
+                        for (let j = 1; j < points.length; j++) {
+                            ctx.lineTo(points[j].x, points[j].y);
+                        }
+                        ctx.closePath();
+                        ctx.fill();
+                        
+                        // Add sparkles
+                        for (let s = 0; s < 20; s++) {
+                            const sparkleX = centerX + (Math.random() - 0.5) * size * 30;
+                            const sparkleY = centerY + (Math.random() - 0.5) * size * 20;
+                            ctx.fillStyle = `rgba(255, 255, 255, ${Math.random()})`;
+                            ctx.beginPath();
+                            ctx.arc(sparkleX, sparkleY, 2, 0, 2 * Math.PI);
+                            ctx.fill();
+                        }
+                        
+                        // Restart animation after a pause
+                        setTimeout(() => {
+                            drawHeart();
+                        }, 2000);
+                    }
+                }
+                
+                drawNextSegment();
+            }
+            
+            drawHeart();
+        }
 
         // Initialize
         createHearts();

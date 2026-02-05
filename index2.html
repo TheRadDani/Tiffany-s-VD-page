@@ -103,7 +103,7 @@
 
         .image-container {
             width: 100%;
-            max-width: 400px;
+            max-width: 300px;
             height: 300px;
             margin: 20px 0;
             border-radius: 15px;
@@ -242,7 +242,7 @@
 </head>
 <body>
     <div class="hearts" id="hearts"></div>
-    <div class="page-indicator" id="pageIndicator">Page 1 of 8</div>
+    <div class="page-indicator" id="pageIndicator">Page 1 of 6</div>
 
     <div class="container">
         <div class="book" id="book">
@@ -250,14 +250,7 @@
             <div class="page" id="page1">
                 <h1>💕 Happy Valentine's Day! 💕</h1>
                 <p>Welcome to a special Valentine's Day celebration...</p>
-                <div class="video-container">
-                    <iframe 
-                            src="https://www.youtube.com/embed/EQ9yK4yHamo" 
-                            title="YouTube video player" 
-                            frameborder="0" 
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                            allowfullscreen> 
-                    </iframe> 
+                <div class="video-container"> <iframe src="https://www.youtube.com/embed/EQ9yK4yHamo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> </iframe> 
                 </div>
                 <p style="font-size: 1.4em; color: #ff6b9d; margin-top: 20px;">
                     This is a love story about someone truly special...
@@ -270,6 +263,7 @@
                 <div class="image-container">
                     <img src="./images/tiffany1.jpg" alt="Tiffany's adorable smile" class="tiffany-photo">
                 </div>
+
                 <p>
                     Where do I even begin? Tiffany, you are the most incredibly cute person I've ever known. 
                     Your smile lights up every room you walk into, and your laughter is like music to my ears. 
@@ -279,9 +273,9 @@
 
             <!-- Page 3: More about Tiffany -->
             <div class="page hidden" id="page3">
-                <h2>Your Beautiful Soul 💖</h2>
+                <h2>Your Beautiful Soul 💖</h2> 
                 <div class="image-container">
-                    <img src="./images/tiffany5.jpg" alt="Tiffany's adorable smile" class="tiffany-photo">
+                    <img src="./images/tiffany2.jpg" alt="Tiffany being herself" class="tiffany-photo">
                 </div>
                 <p>
                     It's not just your outer beauty that captivates me, Tiffany. It's your kindness, 
@@ -294,7 +288,9 @@
             <div class="page hidden" id="page4">
                 <h2>Every Moment With You ⏰</h2>
                 <div class="image-container">
-                    <img src="./images/tiffany12.jpg" alt="Tiffany's adorable smile" class="tiffany-photo">
+                    <div class="image-placeholder">
+                        📸 Our special moments
+                    </div>
                 </div>
                 <p>
                     Every moment I spend with you is precious. Whether we're laughing together, 
@@ -308,7 +304,9 @@
             <div class="page hidden" id="page5">
                 <h2>I Love You More Than Words 💌</h2>
                 <div class="image-container">
-                    <img src="./images/tiffany7.jpg" alt="Tiffany's adorable smile" class="tiffany-photo">
+                    <div class="image-placeholder">
+                        📸 My favorite person
+                    </div>
                 </div>
                 <p>
                     Tiffany, I love you more than words could ever express. You are my best friend, 
@@ -322,7 +320,9 @@
             <div class="page hidden" id="page6">
                 <h2>Forever and Always 💕</h2>
                 <div class="image-container">
-                    <img src="./images/tiffany10.jpg" alt="Tiffany's adorable smile" class="tiffany-photo">
+                    <div class="image-placeholder">
+                        📸 Together forever
+                    </div>
                 </div>
                 <p style="font-size: 1.3em; color: #ff6b9d;">
                     Happy Valentine's Day, my beautiful Tiffany!
@@ -336,26 +336,6 @@
                     All my love, always ❤️
                 </p>
             </div>
-
-            <!-- Page 7: Will You Be My Valentine Letter -->
-            <div class="page hidden" id="page7">
-                <div style="max-width: 600px; background: linear-gradient(to bottom, #fff9f9, #ffe6e6); padding: 30px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
-                    <h1 style="text-align: center; color: #ff1744; font-size: 2.5em; margin: 30px 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.1);">
-                        Will You Be My Valentine? 💝
-                    </h1>
-                    <p style="text-align: center; font-size: 1.2em; color: #ff6b9d; margin-top: 20px; font-style: italic;">
-                        Forever yours,<br>
-                        <span style="font-size: 1.3em; font-weight: bold;">With all my heart ❤️</span>
-                    </p>
-                </div>
-            </div>
-
-            <!-- Page 8: Animated Heart with Brython -->
-            <div class="page hidden" id="page8">
-                <h1 style="text-align: center; color: #ff1744; font-size: 2.5em; margin: 30px 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.1);">
-                        Muaaaaaah 😽
-                    </h1>
-            </div>
         </div>
     </div>
 
@@ -366,7 +346,7 @@
 
     <script>
         let currentPage = 1;
-        const totalPages = 8;
+        const totalPages = 6;
 
         // Create floating hearts
         function createHearts() {
@@ -408,11 +388,6 @@
             }
             updatePageIndicator();
             updateButtons();
-            
-            // Start heart animation when reaching page 8
-            if (pageNum === 8) {
-                setTimeout(startHeartAnimation, 500);
-            }
         }
 
         function nextPage() {
@@ -433,10 +408,6 @@
                 showPage(currentPage);
             }
         }
-
-        // Heart animation using Canvas (turtle-like drawing)
-        let animationRunning = false;
-        
 
         // Initialize
         createHearts();
