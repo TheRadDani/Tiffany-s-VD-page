@@ -103,7 +103,7 @@
 
         .image-container {
             width: 100%;
-            max-width: 300px;
+            max-width: 400px;
             height: 300px;
             margin: 20px 0;
             border-radius: 15px;
@@ -242,7 +242,7 @@
 </head>
 <body>
     <div class="hearts" id="hearts"></div>
-    <div class="page-indicator" id="pageIndicator">Page 1 of 6</div>
+    <div class="page-indicator" id="pageIndicator">Page 1 of 8</div>
 
     <div class="container">
         <div class="book" id="book">
@@ -250,7 +250,14 @@
             <div class="page" id="page1">
                 <h1>💕 Happy Valentine's Day! 💕</h1>
                 <p>Welcome to a special Valentine's Day celebration...</p>
-                <div class="video-container"> <iframe src="https://www.youtube.com/embed/EQ9yK4yHamo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> </iframe> 
+                <div class="video-container">
+                    <iframe 
+                            src="https://www.youtube.com/embed/EQ9yK4yHamo" 
+                            title="YouTube video player" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen> 
+                    </iframe> 
                 </div>
                 <p style="font-size: 1.4em; color: #ff6b9d; margin-top: 20px;">
                     This is a love story about someone truly special...
@@ -263,7 +270,6 @@
                 <div class="image-container">
                     <img src="./images/tiffany1.jpg" alt="Tiffany's adorable smile" class="tiffany-photo">
                 </div>
-
                 <p>
                     Where do I even begin? Tiffany, you are the most incredibly cute person I've ever known. 
                     Your smile lights up every room you walk into, and your laughter is like music to my ears. 
@@ -273,9 +279,9 @@
 
             <!-- Page 3: More about Tiffany -->
             <div class="page hidden" id="page3">
-                <h2>Your Beautiful Soul 💖</h2> 
+                <h2>Your Beautiful Soul 💖</h2>
                 <div class="image-container">
-                    <img src="./images/tiffany2.jpg" alt="Tiffany being herself" class="tiffany-photo">
+                    <img src="./images/tiffany11.jpg" alt="Tiffany's adorable smile" class="tiffany-photo">
                 </div>
                 <p>
                     It's not just your outer beauty that captivates me, Tiffany. It's your kindness, 
@@ -288,9 +294,7 @@
             <div class="page hidden" id="page4">
                 <h2>Every Moment With You ⏰</h2>
                 <div class="image-container">
-                    <div class="image-placeholder">
-                        📸 Our special moments
-                    </div>
+                    <img src="./images/tiffany12.jpg" alt="Tiffany's adorable smile" class="tiffany-photo">
                 </div>
                 <p>
                     Every moment I spend with you is precious. Whether we're laughing together, 
@@ -304,9 +308,7 @@
             <div class="page hidden" id="page5">
                 <h2>I Love You More Than Words 💌</h2>
                 <div class="image-container">
-                    <div class="image-placeholder">
-                        📸 My favorite person
-                    </div>
+                    <img src="./images/tiffany7.jpg" alt="Tiffany's adorable smile" class="tiffany-photo">
                 </div>
                 <p>
                     Tiffany, I love you more than words could ever express. You are my best friend, 
@@ -320,9 +322,7 @@
             <div class="page hidden" id="page6">
                 <h2>Forever and Always 💕</h2>
                 <div class="image-container">
-                    <div class="image-placeholder">
-                        📸 Together forever
-                    </div>
+                    <img src="./images/tiffany10.jpg" alt="Tiffany's adorable smile" class="tiffany-photo">
                 </div>
                 <p style="font-size: 1.3em; color: #ff6b9d;">
                     Happy Valentine's Day, my beautiful Tiffany!
@@ -336,6 +336,29 @@
                     All my love, always ❤️
                 </p>
             </div>
+
+            <!-- Page 7: Will You Be My Valentine Letter -->
+            <div class="page hidden" id="page7">
+                <div style="max-width: 600px; background: linear-gradient(to bottom, #fff9f9, #ffe6e6); padding: 30px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
+                    <h1 style="text-align: center; color: #ff1744; font-size: 2.5em; margin: 30px 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.1);">
+                        Will You Be My Valentine? 💝
+                    </h1>
+                    <p style="text-align: center; font-size: 1.2em; color: #ff6b9d; margin-top: 20px; font-style: italic;">
+                        Forever yours,<br>
+                        <span style="font-size: 1.3em; font-weight: bold;">With all my heart ❤️</span>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Page 8: Animated Heart with Brython -->
+            <div class="page hidden" id="page8">
+                <div style="background: white; border-radius: 15px; padding: 20px; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
+                    <canvas id="heartCanvas" width="600" height="400" style="max-width: 100%; border-radius: 10px;"></canvas>
+                </div>
+                <p style="margin-top: 20px; font-size: 1.2em; color: #ff6b9d;">
+                    This heart will keep drawing for you, over and over... just like my love! 💕
+                </p>
+            </div>
         </div>
     </div>
 
@@ -346,7 +369,7 @@
 
     <script>
         let currentPage = 1;
-        const totalPages = 6;
+        const totalPages = 8;
 
         // Create floating hearts
         function createHearts() {
@@ -388,6 +411,11 @@
             }
             updatePageIndicator();
             updateButtons();
+            
+            // Start heart animation when reaching page 8
+            if (pageNum === 8) {
+                setTimeout(startHeartAnimation, 500);
+            }
         }
 
         function nextPage() {
@@ -407,6 +435,110 @@
                 currentPage--;
                 showPage(currentPage);
             }
+        }
+
+        // Heart animation using Canvas (turtle-like drawing)
+        let animationRunning = false;
+        
+        function startHeartAnimation() {
+            if (animationRunning) return;
+            animationRunning = true;
+            
+            const canvas = document.getElementById('heartCanvas');
+            const ctx = canvas.getContext('2d');
+            
+            // Set canvas size
+            const scale = Math.min(canvas.width / 600, 1);
+            
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2.5;
+            const size = 80 * scale;
+            
+            // Turtle-like state
+            let t = 0;
+            let lastX = null;
+            let lastY = null;
+            const stepSize = 0.02; // Smaller step for smoother drawing
+            const drawSpeed = 10; // milliseconds between steps
+            
+            // Color gradient
+            const colors = ['#ff1744', '#ff4569', '#ff6b9d', '#ff8fab', '#ffc1cc', '#ff8fab', '#ff6b9d', '#ff4569'];
+            
+            function getColorForT(t) {
+                const colorIndex = Math.floor((t / (2 * Math.PI)) * colors.length) % colors.length;
+                return colors[colorIndex];
+            }
+            
+            // Turtle drawing function - iterative like Python turtle
+            function drawStep() {
+                if (t > 2 * Math.PI) {
+                    // Fill the heart when complete
+                    ctx.fillStyle = 'rgba(255, 107, 157, 0.2)';
+                    ctx.beginPath();
+                    let fillT = 0;
+                    let firstPoint = true;
+                    while (fillT <= 2 * Math.PI) {
+                        const x = centerX + size * 16 * Math.pow(Math.sin(fillT), 3);
+                        const y = centerY - size * (13 * Math.cos(fillT) - 5 * Math.cos(2*fillT) - 2 * Math.cos(3*fillT) - Math.cos(4*fillT));
+                        if (firstPoint) {
+                            ctx.moveTo(x, y);
+                            firstPoint = false;
+                        } else {
+                            ctx.lineTo(x, y);
+                        }
+                        fillT += 0.1;
+                    }
+                    ctx.closePath();
+                    ctx.fill();
+                    
+                    // Add sparkles
+                    for (let s = 0; s < 15; s++) {
+                        const sparkleX = centerX + (Math.random() - 0.5) * size * 30;
+                        const sparkleY = centerY + (Math.random() - 0.5) * size * 20;
+                        ctx.fillStyle = `rgba(255, 255, 255, ${Math.random() * 0.8})`;
+                        ctx.beginPath();
+                        ctx.arc(sparkleX, sparkleY, 2, 0, 2 * Math.PI);
+                        ctx.fill();
+                    }
+                    
+                    // Pause, then clear and restart
+                    setTimeout(() => {
+                        ctx.clearRect(0, 0, canvas.width, canvas.height);
+                        t = 0;
+                        lastX = null;
+                        lastY = null;
+                        drawStep();
+                    }, 1500);
+                    return;
+                }
+                
+                // Calculate current position (heart parametric equation)
+                const x = centerX + size * 16 * Math.pow(Math.sin(t), 3);
+                const y = centerY - size * (13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t));
+                
+                // Draw line from last position to current (turtle-like)
+                if (lastX !== null && lastY !== null) {
+                    ctx.beginPath();
+                    ctx.moveTo(lastX, lastY);
+                    ctx.lineTo(x, y);
+                    ctx.strokeStyle = getColorForT(t);
+                    ctx.lineWidth = 3;
+                    ctx.lineCap = 'round';
+                    ctx.lineJoin = 'round';
+                    ctx.stroke();
+                }
+                
+                // Update turtle position
+                lastX = x;
+                lastY = y;
+                t += stepSize;
+                
+                // Continue drawing
+                setTimeout(drawStep, drawSpeed);
+            }
+            
+            // Start the turtle drawing
+            drawStep();
         }
 
         // Initialize
